@@ -1,0 +1,52 @@
+---
+title: "Weekend Homework - Cleaning and Analysis Data"
+output: html_notebook
+---
+
+1.2
+
+1. Read the cleaned data into R.
+
+```{r}
+library(tidyverse)
+
+meteorite <- read_csv("meteorite_landings_clean.csv")
+install.packages("sf")
+install.packages("raster")
+install.packages("spData")
+remotes::install_github("Nowosad/spDataLarge")
+library(sf)          # classes and functions for vector data
+#> Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 7.0.0
+library(sf)          # classes and functions for vector data
+#> Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 7.0.0
+library(sf)          # classes and functions for vector data
+#> Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 7.0.0
+```
+
+2. Find the names and years found for the 10 largest meteorites in the data.
+```{r}
+meteorite %>% 
+  arrange(desc(mass_g)) %>% 
+  head(n=10)
+```
+
+3. Find the average mass of meteorites that were recorded falling, vs. those which were just found.
+```{r}
+meteorite %>% 
+  group_by(fall) %>% 
+  summarise(mean_mass = mean(mass_g))
+```
+
+4. Find the number of meteorites in each year, for every year since 2000.
+```{r}
+meteorite %>% 
+  filter(year >= 2000) %>% 
+  group_by(year) %>% 
+  summarise(mean_mass = mean(mass_g))
+
+```
+5. Extension
+```{r}
+
+```
+
